@@ -1,0 +1,178 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f1f5f2;
+  color: #1f2a24;
+  line-height: 1.5;
+}
+
+header {
+  background: linear-gradient(135deg, #0b6b3a, #14995a);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+header h1 {
+  margin: 0 0 0.25rem;
+}
+
+header p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.painel {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.painel h2 {
+  margin-top: 0;
+  color: #0b6b3a;
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+input,
+select,
+button {
+  font: inherit;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #c5d3ca;
+}
+
+input {
+  flex: 1;
+  min-width: 180px;
+}
+
+select {
+  width: 100%;
+}
+
+button {
+  background: #0b6b3a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #095a31;
+}
+
+.resultado {
+  margin-top: 1rem;
+}
+
+/* Cartão do time: a cor da borda muda conforme a região */
+.cartao {
+  border-left: 6px solid #888;
+  background: #fafcfb;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.cartao h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.4rem;
+}
+
+.cartao dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3rem 1rem;
+  margin: 0;
+}
+
+.cartao dt {
+  font-weight: 600;
+  color: #4a5a50;
+}
+
+.cartao dd {
+  margin: 0;
+}
+
+.regiao-N  { border-left-color: #2e8b57; }
+.regiao-NE { border-left-color: #e08a00; }
+.regiao-SE { border-left-color: #1f6fd1; }
+.regiao-S  { border-left-color: #7a3fc4; }
+.regiao-CO { border-left-color: #c0392b; }
+
+/* Lista de estados por região */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.cartao-estado {
+  background: #fafcfb;
+  border: 1px solid #e0e8e3;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.cartao-estado h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.cartao-estado span {
+  font-size: 0.8rem;
+  background: #0b6b3a;
+  color: #fff;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.cartao-estado ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.resumo {
+  font-weight: 600;
+}
+
+.vazio {
+  margin: 0;
+  color: #8a968f;
+  font-style: italic;
+}
+
+.carregando { color: #4a5a50; }
+.aviso { color: #9a6700; }
+.erro { color: #b42318; }
+
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+  color: #4a5a50;
+}
+
+footer a {
+  color: #0b6b3a;
+}
