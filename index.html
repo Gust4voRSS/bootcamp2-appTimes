@@ -24,6 +24,13 @@
     </section>
 
     <section class="painel">
+      <h2>⭐ Meus favoritos</h2>
+      <div id="lista-favoritos" class="resultado">
+        <p class="carregando">Carregando favoritos...</p>
+      </div>
+    </section>
+
+    <section class="painel">
       <h2>Times por região</h2>
       <select id="select-regiao">
         <option value="">Escolha uma região</option>
@@ -40,9 +47,10 @@
   <footer>
     Dados de estados e regiões:
     <a href="https://servicodados.ibge.gov.br/api/docs/localidades" target="_blank" rel="noopener">API de Localidades do IBGE</a>
+    · Favoritos salvos no <a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- type="module" é necessário para usar o "import" do Supabase -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
-//xx
