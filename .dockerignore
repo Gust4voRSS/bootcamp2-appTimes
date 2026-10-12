@@ -1,0 +1,21 @@
+# Tudo aqui fica FORA da imagem Docker
+
+# Histórico do Git (pesado e desnecessário para rodar o site)
+.git
+.gitignore
+
+# Documentação e prints
+README.md
+prints/
+
+# Arquivos do próprio Docker
+Dockerfile
+.dockerignore
+
+# Script do banco (já foi rodado no Supabase)
+banco.sql
+
+# Configurações do editor e rascunhos
+.vscode/
+*.tmp
+rascunho*
