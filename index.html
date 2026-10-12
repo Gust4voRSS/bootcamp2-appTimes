@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futebol por Região</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>⚽ Futebol por Região</h1>
+    <p>Descubra o estado e a região de cada clube brasileiro, com dados do IBGE.</p>
+  </header>
+
+  <main>
+    <section class="painel">
+      <h2>Buscar um time</h2>
+      <form id="form-time">
+        <input id="campo-time" list="lista-times" placeholder="Ex.: Palmeiras" autocomplete="off">
+        <datalist id="lista-times"></datalist>
+        <button type="submit">Buscar</button>
+      </form>
+      <div id="resultado-time" class="resultado"></div>
+    </section>
+
+    <section class="painel">
+      <h2>Times por região</h2>
+      <select id="select-regiao">
+        <option value="">Escolha uma região</option>
+        <option value="1">Norte</option>
+        <option value="2">Nordeste</option>
+        <option value="3">Sudeste</option>
+        <option value="4">Sul</option>
+        <option value="5">Centro-Oeste</option>
+      </select>
+      <div id="resultado-regiao" class="resultado"></div>
+    </section>
+  </main>
+
+  <footer>
+    Dados de estados e regiões:
+    <a href="https://servicodados.ibge.gov.br/api/docs/localidades" target="_blank" rel="noopener">API de Localidades do IBGE</a>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
