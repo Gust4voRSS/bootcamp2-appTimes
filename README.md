@@ -1,7 +1,7 @@
 # Futebol por Região
 
 ## Autor
-Nome completo — Matrícula 0000000
+Gustavo Rodrigues Sousa Spindola - RA22654035
 
 ## Descrição
 Aplicação web que mostra o estado e a região do Brasil de clubes de futebol brasileiros. É útil para quem quer conhecer a distribuição geográfica dos times ou explorar quais clubes existem em cada região.
@@ -22,5 +22,5 @@ Aplicação web que mostra o estado e a região do Brasil de clubes de futebol b
 2. Abra o arquivo `index.html` no navegador
 
 ## Links
-- **Aplicação no ar (GitHub Pages):** https://seu-usuario.github.io/bootcamp2-app/
-- **Repositório:** https://github.com/seu-usuario/bootcamp2-app
+- **Aplicação no ar (GitHub Pages):[** https://seu-usuario.github.io/bootcamp2-app/](https://github.com/Gust4voRSS/bootcamp2-appTimes/settings/pages)
+- **Repositório:** https://gust4vorss.github.io/bootcamp2-appTimes/
