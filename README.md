@@ -7,13 +7,13 @@ Gustavo Rodrigues Sousa Spindola - RA22654035
 Aplicação web que mostra o estado e a região do Brasil de clubes de futebol brasileiros, e permite salvar os times favoritos num banco de dados. É útil para quem quer conhecer a distribuição geográfica dos times ou explorar quais clubes existem em cada região.
 
 ## Links
-- **Repositório GitHub:** https://github.com/Gust4voRSS/bootcamp2-app
-- **Aplicação no ar (GitHub Pages):** https://Gust4voRSS.github.io/bootcamp2-app/
-- **Imagem no Docker Hub:** https://hub.docker.com/r/Gust4voRSS/bootcamp2-app
+- **Repositório GitHub:** https://github.com/gust4vorss/bootcamp2-app
+- **Aplicação no ar (GitHub Pages):** https://gust4vorss.github.io/bootcamp2-app/
+- **Imagem no Docker Hub:** https://hub.docker.com/r/gust4vorss/bootcamp2-app
 
 ## Rodar com Docker (um comando só)
 ```
-docker run -d -p 8080:80 Gust4voRSS/bootcamp2-app:1.1
+docker run -d -p 8080:80 gust4vorss/bootcamp2-app:1.1
 ```
 Depois abra **http://localhost:8080** no navegador.
 
@@ -48,7 +48,7 @@ Depois abra **http://localhost:8080** no navegador.
 - **Limitação conhecida:** as políticas de acesso (RLS) estão abertas para o papel `anon`, ou seja, qualquer visitante pode ver, adicionar e excluir favoritos, e a lista é a mesma para todo mundo. Numa versão futura, o ideal é adicionar login (Supabase Auth) para que cada usuário tenha os próprios favoritos.
 
 ## Como executar localmente
-1. Clone: `git clone https://github.com/Gust4voRSS/bootcamp2-app`
+1. Clone: `git clone https://github.com/gust4vorss/bootcamp2-app`
 2. Abra o arquivo `index.html` com a extensão Live Server do VS Code (por usar `type="module"`, o arquivo precisa ser aberto por um servidor, não com duplo clique)
 3. Ou rode com Docker usando o comando da seção acima
 
