@@ -123,3 +123,46 @@ document.getElementById("select-regiao").addEventListener("change", (evento) => 
 });
 
 preencherSugestoes();
+// ---------- Funcionalidade 2: listar times por região ----------
+
+async function listarRegiao(idRegiao, nomeRegiao) {
+  const area = document.getElementById("resultado-regiao");
+
+  if (!idRegiao) {
+    area.innerHTML = "";
+    return;
+  }
+
+  area.innerHTML = `<p class="carregando">Carregando estados da região ${nomeRegiao}...</p>`;
+
+  try {
+    const estados = await buscarJSON(`${API_IBGE}/regioes/${idRegiao}/estados`);
+    estados.sort((a, b) => a.nome.localeCompare(b.nome));
+
+    const blocos = estados.map((estado) => {
+      const times = TIMES.filter((t) => t.uf === estado.sigla);
+      const lista = times.length
+        ? `<ul>${times.map((t) => `<li>${t.nome}</li>`).join("")}</ul>`
+        : `<p class="vazio">Nenhum time cadastrado</p>`;
+      return `
+        <article class="cartao-estado">
+          <h3>${estado.nome} <span>${estado.sigla}</span></h3>
+          ${lista}
+        </article>`;
+    }).join("");
+
+    area.innerHTML = `
+      <p class="resumo">A região ${nomeRegiao} tem ${estados.length} estados.</p>
+      <div class="grade">${blocos}</div>`;
+  } catch (erro) {
+    console.error(erro);
+    area.innerHTML = `<p class="erro">Não foi possível carregar a região agora. Tente novamente em instantes.</p>`;
+  }
+}
+document.getElementById("select-regiao").addEventListener("change", (evento) => {
+  const select = evento.target;
+  const nome = select.options[select.selectedIndex].text;
+  listarRegiao(select.value, nome);
+});
+
+preencherSugestoes();
