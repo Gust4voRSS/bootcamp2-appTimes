@@ -216,6 +216,7 @@ async function listarFavoritos() {
 // Desenha a lista de favoritos na tela
 function renderizarLista(favoritos) {
   const area = document.getElementById("lista-favoritos");
+       document.getElementById("contador").textContent = favoritos.length;
 
   if (!favoritos.length) {
     area.innerHTML = `<p class="vazio">Você ainda não tem favoritos. Busque um time e clique em ⭐ Favoritar.</p>`;
