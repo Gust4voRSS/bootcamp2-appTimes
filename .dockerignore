@@ -19,3 +19,9 @@ banco.sql
 .vscode/
 *.tmp
 rascunho*
+
+# Testes e CI (não precisam estar no site)
+.github/
+utils.test.js
+package.json
+node_modules/
