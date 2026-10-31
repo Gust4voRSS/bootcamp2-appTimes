@@ -1,5 +1,7 @@
 // Biblioteca do Supabase (banco de dados), carregada direto da internet
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+// Lista de times e funções puras (testadas em utils.test.js)
+import { TIMES, encontrarTime, timesDoEstado, montarResumo } from "./utils.js";
 
 // ⚠️ TROQUE PELOS DADOS DO SEU PROJETO NO SUPABASE (botão "Connect")
 const SUPABASE_URL = "https://nevcoobntdchfwnygvky.supabase.co";
@@ -9,60 +11,6 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_CHAVE);
 
 // URL base da API de Localidades do IBGE (pública, sem chave)
 const API_IBGE = "https://servicodados.ibge.gov.br/api/v1/localidades";
-
-// Lista de times: cada um ligado à sigla do seu estado (UF).
-// A região NÃO fica aqui: ela vem da API do IBGE.
-const TIMES = [
-  // Sudeste
-  { nome: "Palmeiras", uf: "SP" },
-  { nome: "Corinthians", uf: "SP" },
-  { nome: "São Paulo", uf: "SP" },
-  { nome: "Santos", uf: "SP" },
-  { nome: "Red Bull Bragantino", uf: "SP" },
-  { nome: "Mirassol", uf: "SP" },
-  { nome: "Flamengo", uf: "RJ" },
-  { nome: "Fluminense", uf: "RJ" },
-  { nome: "Vasco da Gama", uf: "RJ" },
-  { nome: "Botafogo", uf: "RJ" },
-  { nome: "Atlético Mineiro", uf: "MG" },
-  { nome: "Cruzeiro", uf: "MG" },
-  // Sul
-  { nome: "Grêmio", uf: "RS" },
-  { nome: "Internacional", uf: "RS" },
-  { nome: "Juventude", uf: "RS" },
-  { nome: "Athletico Paranaense", uf: "PR" },
-  { nome: "Coritiba", uf: "PR" },
-  { nome: "Chapecoense", uf: "SC" },
-  { nome: "Avaí", uf: "SC" },
-  { nome: "Figueirense", uf: "SC" },
-  // Nordeste
-  { nome: "Bahia", uf: "BA" },
-  { nome: "Vitória", uf: "BA" },
-  { nome: "Fortaleza", uf: "CE" },
-  { nome: "Ceará", uf: "CE" },
-  { nome: "Sport", uf: "PE" },
-  { nome: "Náutico", uf: "PE" },
-  { nome: "Santa Cruz", uf: "PE" },
-  { nome: "CRB", uf: "AL" },
-  { nome: "CSA", uf: "AL" },
-  // Centro-Oeste
-  { nome: "Goiás", uf: "GO" },
-  { nome: "Atlético Goianiense", uf: "GO" },
-  { nome: "Cuiabá", uf: "MT" },
-  { nome: "Gama", uf: "DF" },
-  { nome: "Brasiliense", uf: "DF" },
-  // Norte
-  { nome: "Remo", uf: "PA" },
-  { nome: "Paysandu", uf: "PA" },
-  { nome: "Manaus", uf: "AM" },
-];
-
-// ---------- Funções auxiliares ----------
-
-// Tira acentos e deixa minúsculo: "Grêmio" -> "gremio"
-function normalizar(texto) {
-  return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-}
 
 // Evita que um texto vire HTML na página
 function escaparHTML(texto) {
@@ -88,12 +36,7 @@ function preencherSugestoes() {
 
 async function buscarTime(termo) {
   const area = document.getElementById("resultado-time");
-  const busca = normalizar(termo);
-
-  // Primeiro tenta o nome exato; se não achar, tenta "contém"
-  const time =
-    TIMES.find((t) => normalizar(t.nome) === busca) ||
-    TIMES.find((t) => normalizar(t.nome).includes(busca));
+  const time = encontrarTime(termo, TIMES);
 
   if (!time) {
     area.innerHTML = `<p class="aviso">Não encontrei "${escaparHTML(termo)}" na lista. Tente outro nome, como Flamengo ou Grêmio.</p>`;
@@ -104,7 +47,7 @@ async function buscarTime(termo) {
 
   try {
     const estado = await buscarJSON(`${API_IBGE}/estados/${time.uf}`);
-    const resumo = `${estado.nome} (${estado.sigla}) · ${estado.regiao.nome}`;
+    const resumo = montarResumo(estado);
 
     area.innerHTML = `
       <article class="cartao regiao-${estado.regiao.sigla}">
@@ -145,7 +88,7 @@ async function listarRegiao(idRegiao, nomeRegiao) {
     estados.sort((a, b) => a.nome.localeCompare(b.nome));
 
     const blocos = estados.map((estado) => {
-      const times = TIMES.filter((t) => t.uf === estado.sigla);
+      const times = timesDoEstado(estado.sigla, TIMES);
       const lista = times.length
         ? `<ul>${times.map((t) => `<li>${t.nome}</li>`).join("")}</ul>`
         : `<p class="vazio">Nenhum time cadastrado</p>`;
@@ -216,7 +159,7 @@ async function listarFavoritos() {
 // Desenha a lista de favoritos na tela
 function renderizarLista(favoritos) {
   const area = document.getElementById("lista-favoritos");
-       document.getElementById("contador").textContent = favoritos.length;
+  document.getElementById("contador").textContent = favoritos.length;
 
   if (!favoritos.length) {
     area.innerHTML = `<p class="vazio">Você ainda não tem favoritos. Busque um time e clique em ⭐ Favoritar.</p>`;
