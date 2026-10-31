@@ -8,7 +8,7 @@ test("normalizar tira acentos e deixa minúsculo", () => {
 });
 
 test("encontrarTime acha pelo nome exato, sem acento", () => {
-  assert.equal(encontrarTime("gremio", TIMES).uf, "SP");
+  assert.equal(encontrarTime("gremio", TIMES).uf, "RS");
 });
 
 test("encontrarTime acha por parte do nome", () => {
