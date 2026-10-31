@@ -2,7 +2,7 @@
 FROM nginx:alpine
 
 # Copia os arquivos da aplicação para a pasta servida pelo Nginx
-COPY index.html style.css script.js /usr/share/nginx/html/
+COPY index.html style.css script.js utils.js /usr/share/nginx/html/
 
 # Porta padrão do Nginx
 EXPOSE 80
